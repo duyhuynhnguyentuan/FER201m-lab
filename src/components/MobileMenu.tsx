@@ -23,9 +23,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({visible}) => {
             <div className="px-3 text-center text-white hover:underline">
                 Films
             </div>
+            <Link to={`/news`}>
             <div className="px-3 text-center text-white hover:underline" >
                 News & popular
             </div>
+            </Link>
             <div className="px-3 text-center text-white hover:underline" >
                 My list
             </div>
