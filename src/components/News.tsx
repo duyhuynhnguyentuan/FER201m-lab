@@ -34,10 +34,7 @@ return(
     
         <p
           className="mb-6 rounded border-l-4 border-neutral-800 bg-neutral-100 p-2 dark:border-neutral-200 dark:bg-neutral-700">
-          <strong>Note:</strong> Lorem ipsum dolor sit amet, consectetur
-          adipisicing elit. Optio odit consequatur porro sequi ab distinctio
-          modi. Rerum cum dolores sint, adipisci ad veritatis laborum eaque
-          illum saepe mollitia ut voluptatum.
+          <strong>Note:</strong> This movie web is designed by Duy Huynh for his lab grade in FER201m. Building with React and Tailwind, MaterialUI and Materialize. Most of the project uses Typescript (90%)
         </p>
     
         <p className="mb-6">
