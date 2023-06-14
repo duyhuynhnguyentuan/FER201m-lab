@@ -4,7 +4,7 @@ return(
 
     <div className="container my-24 mx-auto md:px-6">
       
-      <section className="mb-32">
+      <section className="mb-8 lg:mb-10">
         <h1 className="mb-4 text-3xl font-bold">
         The Cinematic Triumph: A Journey through Spectacular Cinema
         </h1>
@@ -34,7 +34,7 @@ return(
     
         <p
           className="mb-6 rounded border-l-4 border-neutral-800 bg-neutral-100 p-2 dark:border-neutral-200 dark:bg-neutral-700">
-          <strong>Note:</strong> This movie web is designed by Duy Huynh for his lab grade in FER201m. Building with React and Tailwind, MaterialUI and Materialize. Most of the project uses Typescript (90%)
+          <strong>Note:</strong> This movie web is designed by Duy Huynh for his lab grade in FER201m. Building with React and Tailwind, MaterialUI and Materialize. Most of the project uses Typescript (90%).
         </p>
     
         <p className="mb-6">

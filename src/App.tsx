@@ -45,18 +45,18 @@ const App: React.FC = () => {
           element={
             <>
               {randomFilm && <Billboard film={randomFilm} />}
-              <div className="my-28">
+              <div className="my-6 lg:my-20 ">
                 <MovieList data={FilmInfo} title="All films" />
               </div>
-              <div className="parallax-container">
+              <div className="parallax-container hidden lg:flex ">
                 <div className="parallax">
                   <img src="./images/parralax1.jpg" alt="" />
                 </div>
               </div>
-              <div className="my-20">
+              <div className="my-6 lg:my-20">
                 <MovieList data={FilmInfo} title="New films" />
               </div>
-              <div className="parallax-container">
+              <div className="parallax-container hidden lg:flex">
                 <div className="parallax">
                   <img src="./images/parralax2.jpg" alt="" />
                 </div>
@@ -72,7 +72,7 @@ const App: React.FC = () => {
           </div>
         } />
       </Routes>
-      <div className="pt-24 lg:pt-24">
+      <div className="lg:pt-24">
         <Footer />
       </div>
     </>
