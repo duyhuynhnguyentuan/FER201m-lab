@@ -31,6 +31,7 @@ const Navbar: React.FC = () => {
       }  
     },[])
     return(
+       <div>
        <div className="w-full fixed z-40">
       
        <div className={`px-4 md:px-16 py-6 flex flex-row items-center transition duration-150 ${showBackground?'bg-zinc-900 bg-opacity-90':''}`}>
@@ -44,8 +45,10 @@ const Navbar: React.FC = () => {
         <Link to={`/news`}>
         <NavbarItem label="New & Popular"/>
         </Link>
-
-        <NavbarItem label="My List"/>
+        <Link to={`/filmsManagement`}>
+        <NavbarItem label="Add Film"/>
+        </Link>
+        
         <NavbarItem label="Browse by languages"/>
        </div>
         <div onClick={toggleMobileMenu} className="lg:hidden flex flex-row items-center gap-2 ml-8 cursor-pointer relative ">
@@ -72,6 +75,7 @@ const Navbar: React.FC = () => {
         </div>
        </div>
        </div> 
+       </div>
     )
 }
 /*  nav

@@ -10,6 +10,7 @@ import MovieList from './components/MovieList';
 import M from 'materialize-css';
 import 'materialize-css/dist/css/materialize.min.css';
 import News from './components/News';
+import FilmsManageMent from './components/FilmsManagement';
 
 
 const App: React.FC = () => {
@@ -71,7 +72,18 @@ const App: React.FC = () => {
           <News/>
           </div>
         } />
+        <Route path='/filmsManagement' element={
+        <div className='pt-20'>
+        <FilmsManageMent/>
+        </div>
+        
+        }/>
       </Routes>
+      <div className='container px-4 pt-28'>
+
+      <iframe src="https://open.spotify.com/embed/album/45A5YR3EFMvAMKiKOOczeE?utm_source=generator" width="100%" height="352" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+      </div>
+      
       <div className="lg:pt-24">
         <Footer />
       </div>
