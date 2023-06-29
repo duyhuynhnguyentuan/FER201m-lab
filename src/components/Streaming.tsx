@@ -50,7 +50,7 @@ const Streaming: React.FC = () => {
         <video
           ref={videoRef}
           poster={film.thumbnailUrl}
-          className="w-full object-cover transition duration-500"
+          className="autoPlay w-full object-cover transition duration-500"
           controls
         >
           <source src={film.videoUrl} type="video/mp4" />
