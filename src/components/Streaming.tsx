@@ -1,15 +1,29 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { FilmInfo } from "../shared/FilmInfo";
 import { AiOutlinePlayCircle, AiOutlinePauseCircle, AiOutlineFullscreen } from "react-icons/ai";
 
 const Streaming: React.FC = () => {
   const { id } = useParams();
   const filmId = parseInt(id!, 10);
-  const film = FilmInfo.find((obj) => obj.id === filmId);
+  const [film, setFilm] = useState<any>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
+
+  useEffect(() => {
+    const fetchFilmData = async () => {
+      try {
+        const response = await fetch('https://64914f782f2c7ee6c2c7fcd7.mockapi.io/Films');
+        const data = await response.json();
+        const foundFilm = data.find((obj: any) => obj.id === filmId);
+        setFilm(foundFilm);
+      } catch (error) {
+        console.error('Error fetching film data:', error);
+      }
+    };
+
+    fetchFilmData();
+  }, [filmId]);
 
   useEffect(() => {
     if (videoRef.current) {

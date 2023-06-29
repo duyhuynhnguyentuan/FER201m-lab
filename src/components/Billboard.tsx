@@ -15,7 +15,7 @@ interface BillboardProps{
     film: Film;
 }
 const Billboard:React.FC<BillboardProps> = ({film})=>{
-console.log(film);
+
     const [InfoModalOpen,setInfoModalOpen] = useState(false);
     const handleOpenMadal = () =>{
         setInfoModalOpen(true);

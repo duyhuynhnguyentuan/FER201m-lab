@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import Navbar from './components/Navbar';
-import { FilmInfo } from './shared/FilmInfo';
+
 import Billboard, { Film } from './components/Billboard';
 import Streaming from './components/Streaming';
 import Footer from './components/Footer';
@@ -12,10 +12,27 @@ import 'materialize-css/dist/css/materialize.min.css';
 import News from './components/News';
 import FilmsManageMent from './components/FilmsManagement';
 
-
 const App: React.FC = () => {
+  const [APIdata, setAPIdata] = useState<Film[]>([]);
   const [randomFilm, setRandomFilm] = useState<Film | null>(null);
   const location = useLocation();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch('https://64914f782f2c7ee6c2c7fcd7.mockapi.io/Films');
+        if (!response.ok) {
+          throw new Error(`HTTP Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setAPIdata(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   useEffect(() => {
     M.AutoInit();
@@ -23,7 +40,7 @@ const App: React.FC = () => {
 
   useEffect(() => {
     getRandomFilm();
-  }, []);
+  }, [APIdata]);
 
   useEffect(() => {
     // Initialize Materialize parallax component after rendering the component
@@ -32,9 +49,11 @@ const App: React.FC = () => {
   }, [location]);
 
   const getRandomFilm = (): void => {
-    const randomIndex = Math.floor(Math.random() * FilmInfo.length);
-    const film = FilmInfo[randomIndex];
-    setRandomFilm(film);
+    if (APIdata.length > 0) {
+      const randomIndex = Math.floor(Math.random() * APIdata.length);
+      const film = APIdata[randomIndex];
+      setRandomFilm(film);
+    }
   };
 
   return (
@@ -47,7 +66,7 @@ const App: React.FC = () => {
             <>
               {randomFilm && <Billboard film={randomFilm} />}
               <div className="my-6 lg:my-20 ">
-                <MovieList data={FilmInfo} title="All films" />
+                <MovieList data={APIdata} title="All films" />
               </div>
               <div className="parallax-container hidden lg:flex ">
                 <div className="parallax">
@@ -55,7 +74,7 @@ const App: React.FC = () => {
                 </div>
               </div>
               <div className="my-6 lg:my-20">
-                <MovieList data={FilmInfo} title="New films" />
+                <MovieList data={APIdata} title="New films" />
               </div>
               <div className="parallax-container hidden lg:flex">
                 <div className="parallax">
@@ -68,22 +87,15 @@ const App: React.FC = () => {
         <Route path="/streaming/:id" element={<div className="py-24 lg:py-24"><Streaming /></div>} />
         <Route path='/news' element={
           <div className='pt-28'>
-   
-          <News/>
+            <News/>
           </div>
         } />
         <Route path='/filmsManagement' element={
-        <div className='pt-20'>
-        <FilmsManageMent/>
-        </div>
-        
+          <div className='pt-20'>
+            <FilmsManageMent/>
+          </div>
         }/>
       </Routes>
-      <div className='container px-4 pt-28'>
-
-      <iframe src="https://open.spotify.com/embed/album/45A5YR3EFMvAMKiKOOczeE?utm_source=generator" width="100%" height="352" frameBorder="0" allowFullScreen allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-      </div>
-      
       <div className="lg:pt-24">
         <Footer />
       </div>
