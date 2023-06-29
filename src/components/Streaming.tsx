@@ -1,14 +1,12 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { AiOutlinePlayCircle, AiOutlinePauseCircle, AiOutlineFullscreen } from "react-icons/ai";
+import { AiOutlineFullscreen } from 'react-icons/ai';
 
 const Streaming: React.FC = () => {
   const { id } = useParams();
   const filmId = parseInt(id!, 10);
   const [film, setFilm] = useState<any>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
 
   useEffect(() => {
     const fetchFilmData = async () => {
@@ -27,46 +25,21 @@ const Streaming: React.FC = () => {
 
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.currentTime = currentTime;
+      videoRef.current.play().catch((error) => {
+        console.error('Error playing video:', error);
+      });
     }
-  }, [currentTime]);
-
-  if (!film) {
-    return <div>Film not found</div>;
-  }
-
-  const handlePlay = () => {
-    if (videoRef.current) {
-      videoRef.current.play();
-      setIsPlaying(true);
-    }
-  };
-
-  const handlePause = () => {
-    if (videoRef.current) {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (videoRef.current) {
-      const seekTime = parseFloat(e.target.value);
-      setCurrentTime(seekTime);
-    }
-  };
-
-  const handleTimeUpdate = () => {
-    if (videoRef.current) {
-      setCurrentTime(videoRef.current.currentTime);
-    }
-  };
+  }, [film]);
 
   const handleFullscreen = () => {
     if (videoRef.current && videoRef.current.requestFullscreen) {
       videoRef.current.requestFullscreen();
     }
   };
+
+  if (!film) {
+    return <div>Film not found</div>;
+  }
 
   return (
     <div className="container mx-auto px-2">
@@ -78,35 +51,11 @@ const Streaming: React.FC = () => {
           ref={videoRef}
           poster={film.thumbnailUrl}
           className="w-full object-cover transition duration-500"
-          autoPlay
-          onClick={isPlaying ? handlePause : handlePlay}
-          onTimeUpdate={handleTimeUpdate}
+          controls
         >
           <source src={film.videoUrl} type="video/mp4" />
         </video>
-        <div className="absolute bottom-0 left-0 w-full bg-gray-900 bg-opacity-75 flex items-center px-4 py-2">
-          {isPlaying ? (
-            <button className="text-white" onClick={handlePause}>
-              <AiOutlinePauseCircle className="h-6 w-6" />
-            </button>
-          ) : (
-            <button className="text-white" onClick={handlePlay}>
-              <AiOutlinePlayCircle className="h-6 w-6" />
-            </button>
-          )}
-          <input
-            type="range"
-            className="ml-4 flex-grow h-2 rounded-lg bg-white"
-            min={0}
-            max={videoRef.current?.duration || 0}
-            value={currentTime}
-            step={0.01}
-            onChange={handleSeek}
-          />
-          <button className="text-white ml-4" onClick={handleFullscreen}>
-            <AiOutlineFullscreen className="h-6 w-6" />
-          </button>
-        </div>
+    
       </div>
     </div>
   );
