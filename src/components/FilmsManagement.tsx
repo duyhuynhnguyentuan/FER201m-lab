@@ -101,8 +101,8 @@ const FilmsManageMent = () => {
           <>
           <ListItem key={films.id}>
           <ListItemText primary={films.title} secondary={films.description}/>
-          <TextField placeholder="Type new Title..." onChange={(e)=>setnewTitle(e.target.value)}/>
-          <TextField placeholder="Type new Description..." onChange={(e)=>setnewDescription(e.target.value)}/>
+          <TextField placeholder="Type new Title..." onChange={(e:any)=>setnewTitle(e.target.value)}/>
+          <TextField placeholder="Type new Description..." onChange={(e:any)=>setnewDescription(e.target.value)}/>
           <Button
           onClick={()=>{dispatch(updateFilm({id: films.id, title: newTitle, description: newDescription}));
         }}

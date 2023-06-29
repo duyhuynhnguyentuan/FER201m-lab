@@ -1,4 +1,4 @@
-
+import { UserAuth } from "../context/AuthContext";
 import { useCallback,useEffect, useState } from "react";
 import MobileMenu from "./MobileMenu";
 import NavbarItem from "./NavbarItem";
@@ -7,6 +7,14 @@ import AccountMenu from "./AccountMenu";
 import React from "react";
 import { Link } from 'react-router-dom'
 const Navbar: React.FC = () => {
+    const {user, logOut} =UserAuth();
+    const handleSignout = async() => {
+        try {
+            await logOut();
+        } catch (error) {
+            console.log(error)
+        }
+    }
     const TOP_OFFSET = 66;
     const [showBackground,setshowBackground] = useState(false);
     const [showMobileMenu,setShowMobileMenu] = useState(false);
@@ -59,7 +67,7 @@ const Navbar: React.FC = () => {
             <BsChevronDown className={`text-white transition ${showMobileMenu ?'rotate-180': 'rotate-0'}`}/>
             <MobileMenu visible = {showMobileMenu}/>
         </div>
-        <div className="flex flex-row ml-auto gap-7 items-center">
+        <div className="flex flex-row ml-auto mr-4 gap-7 items-center">
         <div className="text-gray-200 hover:text-grey-300 cursor-pointer">
         <BsSearch/>
         </div>
@@ -67,6 +75,7 @@ const Navbar: React.FC = () => {
         <BsBell/>
         </div>
         </div>
+        {user?.displayName ? 
         <div onClick={toggleAccountMenu} className="flex flex-row items-center gap-2 relative ml-7">
         <div className="w-8 h-auto overflow-hidden rounded-md">
             <img src="/images/smiley-profile.png" alt="" />
@@ -74,8 +83,14 @@ const Navbar: React.FC = () => {
         <div className={"text-gray-200 hover:text-grey-300 cursor-pointer"}>
         <BsChevronDown className={`w-4 text-white fill-white transition ${showAccountMenu ? 'rotate-180' : 'rotate-0'}`}/>
         </div>
-        <AccountMenu visible={showAccountMenu}/>
+        <AccountMenu handleLogOut={handleSignout} visible={showAccountMenu} displayName={user.displayName} photoURL={user.photoURL}/>
+        </div> :
+            <Link to={`/signin`}>
+        <div className="bg-red-600 py-3 px-3 text-white rounded-md w-full hover:bg-red-700 transition">
+            Sign In
         </div>
+
+        </Link> }
        </div>
        </div> 
        </div>

@@ -42,11 +42,11 @@ const Streaming: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto px-2">
+    <div className="container mx-2 ">
       <h1 className="text-4xl text-white mb-8">
         <i className="text-zinc-300">You are watching:</i> {film.title}
       </h1>
-      <div className="relative">
+      <div className="relative ">
         <video
           ref={videoRef}
           poster={film.thumbnailUrl}
@@ -57,6 +57,8 @@ const Streaming: React.FC = () => {
         </video>
     
       </div>
+      <h2 className='text-2xl text-white'><i>Genre: </i>{film.genre}</h2>
+      <h3 className='text-xl text-zinc-400'><i>Description: </i>{film.description}</h3>
     </div>
   );
 };
