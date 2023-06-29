@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addFilm, deleteFilm, updateFilm } from "../features/Film";
 import { v4 as uuidv4 } from 'uuid';
 import { Button, IconButton, ListItem, ListItemText, TextField } from "@mui/material";
+import AddMovieForm from "./AddMovieForm";
 
 const FilmsManageMent = () => {
   const [title, setTitle] = useState('');
@@ -36,6 +37,11 @@ const FilmsManageMent = () => {
 
   return (
     <div className="relative h-full w-full">
+     <div className="container rounded-md bg-white py-20 px-20 ">
+
+      <h1 className="">Formik Add Film</h1>
+      <AddMovieForm/>
+     </div>
       {/* sign-in form starts here */}
       <div className="flex justify-center">
         <div className="bg-black/80 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
