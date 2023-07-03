@@ -23,7 +23,7 @@ const AccountMenu: React.FC<AccountMenuProps> = ({ visible, handleLogOut, photoU
       </div>
       <hr className="bg-gray-600 border-0 h-px my-4" />
       <div
-        className="px-3 text-center text-white text-sm hover:underline"
+        className="px-3 text-center font-bold text-white text-sm hover:underline"
         onClick={handleLogOut} // Call the handleLogOut function when clicked
       >
         Sign out here!

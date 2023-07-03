@@ -39,10 +39,13 @@ const FilmsManageMent = () => {
     <div className="relative h-full w-full">
      <div className="container rounded-md bg-white py-20 px-20 ">
 
-      <h1 className="">Formik Add Film</h1>
+      <h1 className="">Formik CRUD Film</h1>
+      
       <AddMovieForm/>
+
      </div>
-      {/* sign-in form starts here */}
+     {/* <h1 className="text-white mt-20">REDUX TEST ONLY</h1>
+      sign-in form starts here
       <div className="flex justify-center">
         <div className="bg-black/80 px-16 py-16 self-center mt-2 lg:w-2/5 lg:max-w-md rounded-md w-full">
           <h2 className="text-white text-4xl mb-8 semi-bold">
@@ -125,7 +128,7 @@ const FilmsManageMent = () => {
         )
       })
     }
-    </div>
+    </div> */}
 
     </div>
   );
