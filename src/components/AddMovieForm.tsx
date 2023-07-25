@@ -76,12 +76,12 @@ const MovieList = () => {
   const handleSaveEdit = async () => {
     try {
       if (!editingMovie) return;
-
+  
       await axios.put(
         `https://64914f782f2c7ee6c2c7fcd7.mockapi.io/Films/${editingMovie.id}`,
-        editingMovie
+        editingMovie 
       );
-
+  
       setEditingMovie(null);
       fetchMovies(); // Refresh movies after update
     } catch (error) {
@@ -144,7 +144,7 @@ const MovieList = () => {
         {editingMovie && (
           <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
             <div className="bg-white p-4 rounded-lg">
-              <h2 className="text-white">Edit Movie</h2>
+              <h2 className="text-black">Edit Movie</h2>
               <form>
                 <input
                   type="text"

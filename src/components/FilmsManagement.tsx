@@ -1,6 +1,4 @@
-import Input from "./Input";
 import { useState } from 'react';
-import {FcDeleteRow} from 'react-icons/fc'
 import { useDispatch, useSelector } from 'react-redux';
 import { addFilm, deleteFilm, updateFilm } from "../features/Film";
 import { v4 as uuidv4 } from 'uuid';
